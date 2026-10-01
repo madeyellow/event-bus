@@ -1,0 +1,20 @@
+{
+  "name": "com.madeyellow.event-bus",
+  "version": "1.0.0",
+  "displayName": "Event Bus",
+  "description": "Typed publish/subscribe for Unity, in code or through a ScriptableObject asset.",
+  "unity": "6000.3",
+  "documentationUrl": "https://github.com/madeyellow/event-bus",
+  "changelogUrl": "https://github.com/madeyellow/event-bus/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/madeyellow/event-bus/blob/main/LICENSE",
+  "keywords": [
+    "events",
+    "scriptable-object",
+    "bus"
+  ],
+  "author": {
+    "name": "MadeYellow",
+    "url": "https://github.com/madeyellow"
+  },
+  "license": "MIT"
+}
