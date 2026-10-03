@@ -8,7 +8,6 @@ namespace MadeYellow.EventBus
     /// Asset-backed bus. Subscriptions exist only at runtime and are cleared when the asset is enabled or disabled.
     /// </summary>
     [CreateAssetMenu(fileName = "Event Bus", menuName = "MadeYellow/Event Bus")]
-    [Icon("Packages/com.madeyellow.event-bus/Editor/Icons/event-icon.png")]
     public sealed class ScriptableEventBus : ScriptableObject, IEventBus
     {
         /// <summary>Subscriptions. The key is the event type; the value is an <see cref="Action{T}"/> multicast delegate.</summary>
