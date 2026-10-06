@@ -1,6 +1,6 @@
 {
   "name": "com.madeyellow.event-bus",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "displayName": "Event Bus",
   "description": "Typed publish/subscribe for Unity, in code or through a ScriptableObject asset.",
   "unity": "6000.3",

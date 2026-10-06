@@ -7,6 +7,6 @@ namespace MadeYellow.EventBus
         public const string PackageName = "com.madeyellow.event-bus";
 
         /// <summary>Package version.</summary>
-        public const string Version = "0.1.0";
+        public const string Version = "1.1.0";
     }
 }

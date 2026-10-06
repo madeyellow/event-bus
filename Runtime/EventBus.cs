@@ -10,7 +10,7 @@ namespace MadeYellow.EventBus
         readonly Dictionary<Type, Delegate> _events = new();
 
         /// <inheritdoc />
-        public void Subscribe<T>(Action<T> listener)
+        public void Subscribe<T>(Action<T> listener) where T : struct
         {
             var type = typeof(T);
             if (_events.TryGetValue(type, out var existing))
@@ -20,7 +20,7 @@ namespace MadeYellow.EventBus
         }
 
         /// <inheritdoc />
-        public void Unsubscribe<T>(Action<T> listener)
+        public void Unsubscribe<T>(Action<T> listener) where T : struct
         {
             var type = typeof(T);
             if (!_events.TryGetValue(type, out var existing))
@@ -34,7 +34,7 @@ namespace MadeYellow.EventBus
         }
 
         /// <inheritdoc />
-        public void Publish<T>(T eventData)
+        public void Publish<T>(in T eventData) where T : struct
         {
             if (_events.TryGetValue(typeof(T), out var action))
                 ((Action<T>)action)?.Invoke(eventData);

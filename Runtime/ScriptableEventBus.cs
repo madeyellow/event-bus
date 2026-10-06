@@ -7,8 +7,9 @@ namespace MadeYellow.EventBus
     /// <summary>
     /// Asset-backed bus. Subscriptions exist only at runtime and are cleared when the asset is enabled or disabled.
     /// </summary>
+    [Obsolete("Use HighPubLowSubEventBus. Publish on that bus does not allocate.")]
     [CreateAssetMenu(fileName = "Event Bus", menuName = "MadeYellow/Event Bus")]
-    public sealed class ScriptableEventBus : ScriptableObject, IEventBus
+    public sealed class ScriptableEventBus : ScriptableEventBase
     {
         /// <summary>Subscriptions. The key is the event type; the value is an <see cref="Action{T}"/> multicast delegate.</summary>
         readonly Dictionary<Type, Delegate> _events = new();
@@ -18,7 +19,7 @@ namespace MadeYellow.EventBus
         void OnDisable() => _events.Clear();
 
         /// <inheritdoc />
-        public void Subscribe<T>(Action<T> listener)
+        public override void Subscribe<T>(Action<T> listener)
         {
             var type = typeof(T);
             if (_events.TryGetValue(type, out var existing))
@@ -28,7 +29,7 @@ namespace MadeYellow.EventBus
         }
 
         /// <inheritdoc />
-        public void Unsubscribe<T>(Action<T> listener)
+        public override void Unsubscribe<T>(Action<T> listener)
         {
             var type = typeof(T);
             if (!_events.TryGetValue(type, out var existing))
@@ -42,7 +43,7 @@ namespace MadeYellow.EventBus
         }
 
         /// <inheritdoc />
-        public void Publish<T>(T eventData)
+        public override void Publish<T>(in T eventData)
         {
             if (_events.TryGetValue(typeof(T), out var action))
                 ((Action<T>)action)?.Invoke(eventData);
